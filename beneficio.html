@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Funcionalidades del Sistema - Comerciantes Ambulantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -20,12 +21,32 @@
           },
         },
       };
+      // Funcionalidad del menú móvil
+      document.addEventListener('DOMContentLoaded', function () {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+
+          // Cambiar icono del botón
+          const svg = mobileMenuButton.querySelector('svg');
+          if (mobileMenu.classList.contains('hidden')) {
+            svg.innerHTML =
+              '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+          } else {
+            svg.innerHTML =
+              '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+          }
+        });
+      });
     </script>
   </head>
   <body class="font-sans bg-sillar-white text-volcanic-gray leading-relaxed">
     <header class="bg-gradient-to-r from-arequipa-wine to-deep-wine text-white shadow-xl sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row justify-between items-center py-4 gap-4">
+        <div class="flex justify-between items-center py-4">
+          <!-- Logo y título -->
           <div class="flex items-center gap-4">
             <img src="./arequipa.png" alt="Escudo de Arequipa" class="w-12 h-12 object-cover rounded-lg" />
             <div class="text-left">
@@ -34,52 +55,110 @@
             </div>
           </div>
 
-          <!-- Navegación mejorada -->
-          <nav class="flex flex-wrap justify-center gap-2" role="navigation">
+          <!-- Botón hamburguesa para móvil -->
+          <button
+            id="mobile-menu-button"
+            class="lg:hidden text-white p-2 rounded-lg hover:bg-white/20 transition-colors relative z-60"
+            aria-label="Abrir menú"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+
+          <!-- Navegación desktop -->
+          <nav class="hidden lg:flex gap-2" role="navigation">
             <a
               href="/index.html"
-              class="nav-item text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 active:scale-95"
+              class="text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
             >
               Inicio
             </a>
             <a
               href="/beneficio.html"
-              class="nav-item text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 active:scale-95 bg-white/15"
-              aria-current="page"
+              class="text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 bg-white/15"
             >
               Beneficios
             </a>
             <a
               href="#consultas"
-              class="nav-item text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 active:scale-95"
+              class="text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
             >
               Consultas
             </a>
             <a
               href="#tramites"
-              class="nav-item text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 active:scale-95"
+              class="text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
             >
               Trámites
             </a>
             <a
               href="#ayuda"
-              class="nav-item text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 active:scale-95"
+              class="text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
             >
               Ayuda
             </a>
             <a
               href="#contacto"
-              class="nav-item text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 active:scale-95"
+              class="text-white px-4 py-2 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
             >
               Contacto
             </a>
           </nav>
         </div>
+
+        <!-- Menú móvil (flotante, no empuja contenido) -->
+        <nav
+          id="mobile-menu"
+          class="lg:hidden hidden absolute top-full left-0 right-0 bg-gradient-to-r from-arequipa-wine to-deep-wine border-t border-white/20 shadow-lg z-50"
+          role="navigation"
+        >
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col gap-2">
+              <a
+                href="/index.html"
+                class="text-white px-4 py-3 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
+              >
+                Inicio
+              </a>
+              <a
+                href="/beneficio.html"
+                class="text-white px-4 py-3 rounded-lg font-medium hover:bg-white/20 transition-all duration-200 bg-white/15"
+              >
+                Beneficios
+              </a>
+              <a
+                href="#consultas"
+                class="text-white px-4 py-3 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
+              >
+                Consultas
+              </a>
+              <a
+                href="#tramites"
+                class="text-white px-4 py-3 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
+              >
+                Trámites
+              </a>
+              <a
+                href="#ayuda"
+                class="text-white px-4 py-3 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
+              >
+                Ayuda
+              </a>
+              <a
+                href="#contacto"
+                class="text-white px-4 py-3 rounded-lg font-medium hover:bg-white/20 transition-all duration-200"
+              >
+                Contacto
+              </a>
+            </div>
+          </div>
+        </nav>
       </div>
     </header>
 
     <section class="bg-gradient-to-br from-warm-cream to-sillar-white py-12">
-      <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="max-w-6xl mx-auto px-10 text-center pt-6">
         <h2 class="text-4xl font-bold text-arequipa-wine mb-4">Funcionalidades del Sistema</h2>
         <p class="text-xl text-volcanic-gray max-w-4xl mx-auto mb-8 opacity-90">
           Plataforma digital integral para la gestión completa del comercio ambulatorio en el Cercado de Arequipa
